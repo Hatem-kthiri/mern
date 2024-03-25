@@ -99,31 +99,5 @@ router.get("/current", isAuth, (req, res) => {
     res.send({ status: false, msg: "unauthorised" });
   }
 });
-router.get("/loggedUser", isAuth, async (req, res) => {
-  if (req.user.role == 1) {
-    const user = await Instructor.findOne({ email: req.user.email }).populate(
-      "course"
-    );
-    res.json({
-      status: true,
-      msg: "user Details",
-      data: user,
-    });
-  } else if (req.user.role == 2) {
-    const user = await Student.findOne({ email: req.user.email }).populate(
-      "course.course"
-    );
-    res.json({
-      status: true,
-      msg: "user Details",
-      data: user,
-    });
-  } else {
-    res.json({
-      status: famse,
-      msg: "Something wrong",
-    });
-  }
-});
 
 module.exports = router;
