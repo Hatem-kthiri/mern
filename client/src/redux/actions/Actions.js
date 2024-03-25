@@ -6,10 +6,11 @@ import {
 } from "../constants/actions-types";
 import axios from "axios";
 import { url } from "../../utils";
+
 export const login = (loginDetails) => (dispatch) => {
   dispatch({ type: LOADING });
   axios
-    .post(`${url}/api/user/login`, loginDetails)
+    .post(`${url}/api/v1/auth/login`, loginDetails)
     .then((response) =>
       dispatch({ type: LOGIN_USER, payload: response.data.data })
     )
